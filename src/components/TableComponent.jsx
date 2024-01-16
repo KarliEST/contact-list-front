@@ -107,11 +107,25 @@ export default function TableComponent() {
             >
                 {props => (
                     <div>
-                        <SearchBar
-                            {...props.searchProps}
-                            style={{width: "400px", height: "40px"}}
-                            srText={false}
-                        />
+                        <div className={"row m-auto"}>
+                            <div className={"col-sm-6 mb-3"}>
+                                <SearchBar
+                                    {...props.searchProps}
+                                    style={{width: "400px", height: "40px"}}
+                                    srText={false}
+                                />
+                            </div>
+                            <div className={"col-sm-6 mb-3"}>
+                                <ButtonComponent
+                                    name={"Add new contact"}
+                                    variant={"outline-primary"}
+                                    handleClick={() => {
+                                        handleClickAdd();
+                                    }}
+                                />
+                            </div>
+                        </div>
+
                         <BootstrapTable
                             {...props.baseProps}
                             noDataIndication="There is no result"
@@ -123,13 +137,6 @@ export default function TableComponent() {
                     </div>
                 )}
             </ToolkitProvider>
-            <ButtonComponent
-                name={"Add"}
-                variant={"outline-primary"}
-                handleClick={() => {
-                    handleClickAdd();
-                }}
-            />
             {showModal &&
                 <ContactModal
                     type={actionType}
